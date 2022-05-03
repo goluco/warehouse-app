@@ -1,0 +1,11 @@
+<h1>Galpão <%= @warehouse.code %></h1>
+<h2><%= @warehouse.description %></h2>
+<ul>
+  <li><strong>Nome:</strong> <%= @warehouse.name %></li>
+  <li><strong>Cidade:</strong> <%= @warehouse.city %></li>
+  <li><strong>Área:</strong> <%= @warehouse.area %> m²</li>
+  <li><strong>Endereço:</strong> <%= @warehouse.address %></li>
+  <li><strong>CEP:</strong> <%= @warehouse.cep %></li>
+</ul>
+
+<%= link_to('Voltar para a tela inicial', '/') %>
