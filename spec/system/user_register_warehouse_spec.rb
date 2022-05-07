@@ -10,7 +10,7 @@ describe 'Usuário cadastra um galpão' do
         #Assert
         expect(page).to have_field('Nome')
         expect(page).to have_field('Descrição')
-        expect(page).to have_field('Codigo')
+        expect(page).to have_field('Código')
         expect(page).to have_field('Cidade')
         expect(page).to have_field('Endereço')
         expect(page).to have_field('CEP')
@@ -25,7 +25,7 @@ describe 'Usuário cadastra um galpão' do
         click_on 'Cadastrar novo galpão'
         fill_in 'Nome', with: 'Rio de Janeiro'
         fill_in 'Descrição', with: 'Galpão da área da zona portuária do Rio'
-        fill_in 'Codigo', with: 'RIO'
+        fill_in 'Código', with: 'RIO'
         fill_in 'Endereço', with: 'Avenida do Museu do Amanhã, 1000'
         fill_in 'Cidade', with: 'Rio de Janeiro'
         fill_in 'CEP', with: '20000-000'
@@ -48,8 +48,40 @@ describe 'Usuário cadastra um galpão' do
         click_on 'Cadastrar novo galpão'
         fill_in 'Nome', with: ''
         fill_in 'Descrição', with: ''
+        fill_in 'Código', with: ''
+        fill_in 'Endereço', with: ''
+        fill_in 'Cidade', with: ''
+        fill_in 'CEP', with: ''
+        fill_in 'Área', with: ''
         click_on 'Enviar'
         #Assert
         expect(page).to have_content 'Galpão não cadastrado.'
+        expect(page).to have_content 'Nome não pode ficar em branco'
+        expect(page).to have_content 'Código não pode ficar em branco'
+        expect(page).to have_content 'Cidade não pode ficar em branco'
+        expect(page).to have_content 'Descrição não pode ficar em branco'
+        expect(page).to have_content 'CEP não pode ficar em branco'
+        expect(page).to have_content 'Endereço não pode ficar em branco'
+        expect(page).to have_content 'Área não pode ficar em branco'
+    end
+
+    it 'com formatação incorreta' do
+        #Arrange
+        Warehouse.create(name: 'Rio', code: 'RIO', address: 'Endereço', cep: '20000-000', city: 'Rio de Janeiro', area: 10000, description: 'Alguma descrição')
+        #Act
+        visit root_path
+        click_on 'Cadastrar novo galpão'
+        fill_in 'Nome', with: 'Zion'
+        fill_in 'Descrição', with: 'Galpão do Morfeu'
+        fill_in 'Código', with: 'RIO'
+        fill_in 'Endereço', with: 'Caverna do futuro'
+        fill_in 'Cidade', with: 'Zion'
+        fill_in 'CEP', with: '50000000'
+        fill_in 'Área', with: '25000'
+        click_on 'Enviar'
+        #Assert
+        expect(page).to have_content 'Galpão não cadastrado.'
+        expect(page).to have_content 'Código já está em uso'
+        expect(page).to have_content 'CEP não é válido'
     end
 end
