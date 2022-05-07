@@ -74,5 +74,22 @@ RSpec.describe Warehouse, type: :model do
 			#Assert
 			expect(result).to eq(false)
 		end
+
+		it 'false when name is already used' do
+			#Arrange
+			first_warehouse = Warehouse.create(name: 'Rio', code: 'RIO', address: 'Endereço', cep: '20000-000', city: 'Rio de Janeiro', area: 10000, description: 'Alguma descrição')
+			second_warehouse = Warehouse.new(name: 'Rio', code: 'SFS', address: 'Outro Endereço', cep: '15775-000', city: 'Santa Fé do Sul', area: 15000, description: 'Outra descrição')
+			#Act
+			result = second_warehouse.valid?
+			#Assert
+			expect(result).to eq(false)
+		end
+
+		it 'false when zip code not in the right format' do
+			warehouse = Warehouse.new(name: 'Rio', code: 'SFS', address: 'Outro Endereço', cep: '15775000', city: 'Santa Fé do Sul', area: 15000, description: 'Outra descrição')
+			result = warehouse.valid?
+			expect(result).to eq(false)
+		end
+
 	end
 end
