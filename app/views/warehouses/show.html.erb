@@ -7,5 +7,10 @@
   <li><strong>Endereço:</strong> <%= @warehouse.address %></li>
   <li><strong>CEP:</strong> <%= @warehouse.cep %></li>
 </ul>
-
-<%= link_to('Voltar para a tela inicial', '/') %>
+<div>
+  <%= link_to('Editar', edit_warehouse_path(@warehouse.id)) %>
+  <%= button_to('Remover', warehouse_path(@warehouse.id), method: :delete) %>
+</div>
+<div>
+  <%= link_to('Voltar para a tela inicial', root_path) %>
+</div>
