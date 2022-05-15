@@ -1,4 +1,13 @@
 class SuppliersController < ApplicationController
+    before_action :set_supplier, only: [:show, :edit, :update, :destroy]
+
+    def show
+    end
+    
+    def index
+        @suppliers = Supplier.all
+    end
+
     def new
         @supplier = Supplier.new
     end

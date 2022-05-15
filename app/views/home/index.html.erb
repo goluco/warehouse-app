@@ -1,8 +1,14 @@
 <section id='warehouses'>
-<h2>Galpões</h2>
+<div>
+  <%= link_to('Cadastrar novo galpão', new_warehouse_path) %> <br/>
+  <%= link_to('Cadastrar fornecedor', new_supplier_path) %>
+</div>
 
-<%= link_to('Cadastrar novo galpão', new_warehouse_path) %>
-<%= link_to('Cadastrar fornecedor', new_supplier_path) %>
+<div>
+  <h2><%= link_to('Fornecedores', suppliers_path) %></h2>
+</div>
+
+<h2>Galpões</h2>
 
 <% if @warehouses.empty? %>
   <p><%= 'Não existem galpões cadastrados' %><p>
