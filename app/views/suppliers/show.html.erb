@@ -10,3 +10,4 @@
 </ul>
 
 <%= link_to('Editar', edit_supplier_path(@supplier.id)) %>
+<%= button_to('Remover', supplier_path(@supplier.id), method: :delete) %>

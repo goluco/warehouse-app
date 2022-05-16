@@ -34,6 +34,11 @@ class SuppliersController < ApplicationController
           end
     end
 
+    def destroy
+        @supplier.destroy
+        redirect_to suppliers_path, notice: 'Fornecedor removido com sucesso'
+    end
+
     private
 
     def set_supplier 
