@@ -22,6 +22,18 @@ class SuppliersController < ApplicationController
         end
     end
 
+    def edit
+    end
+
+    def update
+        if @supplier.update(supplier_params)
+            redirect_to supplier_path(@supplier.id), notice: 'Fornecedor atualizado com sucesso'
+          else
+            flash.now[:notice] = 'Não foi possível atualizar o fornecedor.'    
+            render 'edit'
+          end
+    end
+
     private
 
     def set_supplier 
