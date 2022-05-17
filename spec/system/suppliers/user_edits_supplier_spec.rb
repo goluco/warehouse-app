@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário edita um fornecedor' do
     it 'a partir da página de detalhes' do
         #Arrange
-        Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe', nif: "12345678901234", address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: '21998754254')
+        Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe', nif: 12345678901234, address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: 21998754254)
         #Act
         visit root_path
         click_on 'Fornecedores'
@@ -21,7 +21,7 @@ describe 'Usuário edita um fornecedor' do
 
     it 'com sucesso' do
         #Arrange
-        Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe', nif: "12345678901234", address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: '21998754254')
+        Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe', nif: 12345678901234, address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: 21998754254)
         #Act
         visit root_path
         click_on 'Fornecedores'
@@ -46,7 +46,7 @@ describe 'Usuário edita um fornecedor' do
 
     it 'e mantém os campos obrigatórios' do
         #Arrange
-        Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe', nif: "12345678901234", address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: '21998754254')
+        Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe', nif: 12345678901234, address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: 21998754254)
         #Act
         visit root_path
         click_on 'Fornecedores'
@@ -67,8 +67,8 @@ describe 'Usuário edita um fornecedor' do
 
     it 'mantém CNPJ único' do
         #Arrange
-        Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe', nif: "12345678901234", address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: '21998754254')
-        Supplier.create!(trade_name: 'Tetiiz Muambas', corporate_name: 'Arya', nif: "23456789012345", address: 'Snow Square, 123', email: "ttmuamba@email.com", phone_number: '21798754286')
+        Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe', nif: 12345678901234, address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: 21998754254)
+        Supplier.create!(trade_name: 'Tetiiz Muambas', corporate_name: 'Arya', nif: 23456789012345, address: 'Snow Square, 123', email: "ttmuamba@email.com", phone_number: 21798754286)
         #Act
         visit root_path
         click_on 'Fornecedores'
@@ -88,7 +88,7 @@ describe 'Usuário edita um fornecedor' do
 
     it 'mantém CNPJ com 14 caracteres' do
         #Arrange
-        Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe', nif: "12345678901234", address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: '21998754254')
+        Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe', nif: 12345678901234, address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: 21998754254)
         #Act
         visit root_path
         click_on 'Fornecedores'

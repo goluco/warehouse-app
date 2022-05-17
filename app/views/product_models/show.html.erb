@@ -1,1 +1,5 @@
-<h1></h1>
+<h1>Modelo de Produto <%= @product_model.name %></h1>
+<p><strong>Fornecedor: </strong> <%= @product_model.supplier.trade_name %></p>
+<p><strong>SKU: </strong> <%= @product_model.sku %></p>
+<p><strong>Dimensão: </strong> <%= @product_model.height %>cm x <%= @product_model.width %>cm x <%= @product_model.depth %>cm </p>
+<p><strong>Peso: </strong> <%= @product_model.weight %>g</p>

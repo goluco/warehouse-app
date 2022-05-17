@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário vê detalhes de um fornecedor' do
     it 'e vê todas as informações' do
         #Arrange
-        Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe', nif: 12345678901234, address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: '21998754254')
+        Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe', nif: 12345678901234, address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: 21998754254)
         #Act
         visit root_path
         click_on 'Fornecedores'
@@ -19,7 +19,7 @@ describe 'Usuário vê detalhes de um fornecedor' do
 
     it 'e retorna ao Menu inicial' do
         #Arrange
-        Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe', nif: 12345678901234, address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: '21998754254')
+        Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe', nif: 12345678901234, address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: 21998754254)
         #Act
         visit root_path
         click_on 'Fornecedores'

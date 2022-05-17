@@ -54,7 +54,7 @@ describe 'Usuário cadastra um fornecedor' do
 
     it 'com CNPJ repetido' do
         #Arrange
-        Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe Marques', nif: "12345678901234", address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: '21998754254')
+        Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe Marques', nif: 12345678901234, address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: 21998754254)
         #Act
         visit root_path
         click_on 'Cadastrar fornecedor'
