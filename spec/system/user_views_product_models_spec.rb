@@ -15,8 +15,8 @@ describe 'Usuário vê modelos de produtos' do
     it 'com sucesso' do
         #Arrange
         supplier = Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe', nif: 12345678901234, address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: '21998754254')
-        ProductModel.create!(name: 'TV 32', weight: 8000, width: 70, height: 45, depth: 10, sku: 'TV32-LFMU-XPTO90', supplier: supplier)
-        ProductModel.create!(name: 'SoundBar 7.1 Surround', weight: 3000, width: 80, height: 15, depth: 20, sku: 'SOU71-LFMU-NOIZ77', supplier: supplier)
+        ProductModel.create!(name: 'TV 32', weight: 8000, width: 70, height: 45, depth: 10, sku: 'TV40LFMXPTO121416180', supplier: supplier)
+        ProductModel.create!(name: 'SoundBar 7.1 Surround', weight: 3000, width: 80, height: 15, depth: 20, sku: 'SOU71LFMUNOIZ7792461', supplier: supplier)
         #Act
         visit root_path
         within('nav') do
@@ -24,10 +24,10 @@ describe 'Usuário vê modelos de produtos' do
         end
         #Assert
         expect(page).to have_content('TV 32')
-        expect(page).to have_content('TV32-LFMU-XPTO90')
+        expect(page).to have_content('TV40LFMXPTO121416180')
         expect(page).to have_content('LF Muambas')
         expect(page).to have_content('SoundBar 7.1 Surround')
-        expect(page).to have_content('SOU71-LFMU-NOIZ77')
+        expect(page).to have_content('SOU71LFMUNOIZ7792461')
         expect(page).to have_content('TV 32')
     end
 

@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Supplier, type: :model do
+  describe '#valid?' do
     it 'falso quando o nome fantasia estiver vazio' do
       #Arrange
       supplier = Supplier.new(trade_name: '', corporate_name: 'Luis Felipe Marques', nif: "12345678901234", address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: '21998754254')
@@ -55,4 +56,5 @@ RSpec.describe Supplier, type: :model do
       #Assert
       expect(result).to eq(false)
     end
+  end
 end
