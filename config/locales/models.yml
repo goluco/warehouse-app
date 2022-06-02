@@ -3,6 +3,7 @@ pt-BR:
     models:
       warehouse: Galpão
       supplier: Fornecedor
+      order: Pedido
     attributes:
       warehouse:
         name: "Nome"
@@ -19,5 +20,13 @@ pt-BR:
         address: "Endereço"
         email: "email"
         phone_number: "Telefone de contato"
+      order:
+        warehouse_id: "Galpão Destino"
+        warehouse: "Galpão Destino"
+        supplier_id: "Fornecedor"
+        supplier: "Fornecedor"
+        user_id: "Usuário responsável"
+        user: "Usuário responsável"
+        estimated_delivery_date: "Data Prevista de Entrega"
 
       # will translate User attribute "login" as "Handle"

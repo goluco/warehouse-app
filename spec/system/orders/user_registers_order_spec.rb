@@ -21,15 +21,15 @@ describe 'Usuário cadastra um pedido' do
         visit root_path
         login_as(user)
         click_on 'Registrar pedido'
-        select warehouse.name, from: 'Galpão Destino' 
+        select 'RIO - Rio', from: 'Galpão Destino' 
         select supplier.corporate_name, from: 'Fornecedor'
         fill_in 'Data Prevista de Entrega', with: '20/12/2022'
         click_on 'Gravar'
         #Assert
         expect(page).to have_content('Pedido registrado com sucesso')
-        expect(page).to have_content('Galpão Destino: Rio')
+        expect(page).to have_content('Galpão Destino: RIO - Rio')
         expect(page).to have_content('Fornecedor: Luis Felipe Marques')
-        expect(page).to have_content('Usuário responsável: Jose Carlos | josecarlos@email.com')
+        expect(page).to have_content('Usuário responsável: Jose Carlos - josecarlos@email.com')
         expect(page).to have_content('Data Prevista de Entrega: 20/12/2022')
         expect(page).not_to have_content('Galpão Destino: Aeroporto SP')
         expect(page).not_to have_content('Fornecedor: LF Muambas')
