@@ -3,9 +3,11 @@ require 'rails_helper'
 describe 'Usuário cadastra modelo de produto' do
 	it 'com sucesso' do
 		#Arrange
+		user = User.create!(name: "Luis", email: "lfmarcas@email.com", password: "password")
 		supplier = Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe Marques', nif: 12345678901234, address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: 21998754254)
 		supplier2 = Supplier.create!(trade_name: 'Tetiiz Muambas', corporate_name: 'Arya', nif: 23456789012345, address: 'Snow Square, 123', email: "ttmuamba@email.com", phone_number: 21798754286)
 		#Act
+		login_as(user)
 		visit root_path
 		click_on 'Modelos de Produtos'
 		click_on 'Cadastrar Novo'
@@ -28,10 +30,12 @@ describe 'Usuário cadastra modelo de produto' do
 
 	it 'com campos incorretos' do
 		#Arrange
+		user = User.create!(name: "Luis", email: "lfmarcas@email.com", password: "password")
 		supplier = Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe Marques', nif: 12345678901234, address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: 21998754254)
 		supplier2 = Supplier.create!(trade_name: 'Tetiiz Muambas', corporate_name: 'Arya', nif: 23456789012345, address: 'Snow Square, 123', email: "ttmuamba@email.com", phone_number: 21798754286)
 		ProductModel.create!(name: 'SoundBar 7.1 Surround', weight: 3000, width: 80, height: 15, depth: 20, sku: 'SOU71LFMUNOIZ7792461', supplier: supplier)
 		#Act
+		login_as(user)
 		visit root_path
 		click_on 'Modelos de Produtos'
 		click_on 'Cadastrar Novo'
@@ -55,9 +59,11 @@ describe 'Usuário cadastra modelo de produto' do
 
 	it 'com código de tamanho incorreto' do
 		#Arrange
+		user = User.create!(name: "Luis", email: "lfmarcas@email.com", password: "password")
 		supplier = Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe Marques', nif: 12345678901234, address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: 21998754254)
 		supplier2 = Supplier.create!(trade_name: 'Tetiiz Muambas', corporate_name: 'Arya', nif: 23456789012345, address: 'Snow Square, 123', email: "ttmuamba@email.com", phone_number: 21798754286)
 		#Act
+		login_as(user)
 		visit root_path
 		click_on 'Modelos de Produtos'
 		click_on 'Cadastrar Novo'
