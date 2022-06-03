@@ -17,6 +17,7 @@ describe 'Usuário cadastra um pedido' do
         other_warehouse = Warehouse.create!(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100_000, address: 'Avenida do Aeroporto, 1000', cep: '15000-000', description: 'Galpão destinado a cargas internacionais')
         supplier = Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe Marques', nif: 12345678901234, address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: 21998754254)
         other_supplier = Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe', nif: 22345678901234, address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: 21998754254)
+        allow(SecureRandom).to receive(:alphanumeric).with(8).and_return('ABCD1234')
         #Act
         visit root_path
         login_as(user)
@@ -27,6 +28,7 @@ describe 'Usuário cadastra um pedido' do
         click_on 'Gravar'
         #Assert
         expect(page).to have_content('Pedido registrado com sucesso')
+        expect(page).to have_content('Pedido ABCD1234')
         expect(page).to have_content('Galpão Destino: RIO - Rio')
         expect(page).to have_content('Fornecedor: Luis Felipe Marques')
         expect(page).to have_content('Usuário responsável: Jose Carlos - josecarlos@email.com')
