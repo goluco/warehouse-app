@@ -13,6 +13,49 @@ RSpec.describe Order, type: :model do
             #Assert
             expect(result).to be true
         end
+
+        it 'falso quando a data estiver vazia' do 
+            #Arrange
+            order = Order.new(estimated_delivery_date: '')
+            #Act
+            order.valid?
+            result = order.errors.include?(:estimated_delivery_date)
+            #Assert
+            expect(result).to be true
+        end
+
+        it 'data estimada de entrega deve ser futura' do
+            #Arrange
+            order = Order.new(estimated_delivery_date: 1.day.ago)
+            #Act
+            order.valid?
+            result = order.errors.include?(:estimated_delivery_date)
+            #Assert
+            expect(result).to be true
+            expect(order.errors[:estimated_delivery_date]).to include(" deve ser futura.")
+        end
+
+        it 'data estimada de entrega não deve ser igual a hoje' do
+            #Arrange
+            order = Order.new(estimated_delivery_date: Date.today)
+            #Act
+            order.valid?
+            result = order.errors.include?(:estimated_delivery_date)
+            #Assert
+            expect(result).to be true
+            expect(order.errors[:estimated_delivery_date]).to include(" deve ser futura.")
+        end
+
+        it 'data estimada de entrega deve ser igual ou maior que amanhã' do
+            #Arrange
+            order = Order.new(estimated_delivery_date: 1.day.from_now)
+            #Act
+            order.valid?
+            result = order.errors.include?(:estimated_delivery_date)
+            #Assert
+            expect(result).to be false
+        end
+
     end
 
     describe 'Gera um código aleatório' do
