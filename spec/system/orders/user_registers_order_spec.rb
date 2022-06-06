@@ -33,6 +33,7 @@ describe 'Usuário cadastra um pedido' do
         expect(page).to have_content('Fornecedor: Luis Felipe Marques')
         expect(page).to have_content('Usuário responsável: Jose Carlos - josecarlos@email.com')
         expect(page).to have_content('Data Prevista de Entrega: 20/12/2022')
+        expect(page).to have_content('Status: Pendente')
         expect(page).not_to have_content('Galpão Destino: Aeroporto SP')
         expect(page).not_to have_content('Fornecedor: LF Muambas')
     end
