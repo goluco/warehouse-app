@@ -9,6 +9,8 @@
   <dd><%= @order.user.description %> </dd>
   <dt><%= Order.human_attribute_name("estimated_delivery_date") %>: </dt>
   <dd><%= I18n.localize(@order.estimated_delivery_date) %> </dd>
+  <dt><%= Order.human_attribute_name("status") %>:</dt>
+  <dd><%= I18n.translate(@order.status) %> </dd>
 </dl>
 
 <%= link_to 'Editar', edit_order_path(@order.id) %>

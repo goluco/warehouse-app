@@ -16,17 +16,20 @@ describe 'Usuário vê seus próprios pedidos' do
         other_user = User.create!(name: 'Luis Felipe', email: 'luisfelipe@email.com', password: 'other_password')
         warehouse = Warehouse.create!(name: 'Rio', code: 'RIO', address: 'Endereço', cep: '20000-000', city: 'Rio de Janeiro', area: 10000, description: 'Alguma descrição')
         supplier = Supplier.create!(trade_name: 'LF Muambas', corporate_name: 'Luis Felipe Marques', nif: 12345678901234, address: 'Rua dos Bobos, número 0', email: "lfmuamba@email.com", phone_number: 21998754254)
-        order = Order.create!(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now)
-        other_order = Order.create!(user: other_user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 2.days.from_now)
-        another_order = Order.create!(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 3.days.from_now)
+        order = Order.create!(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now, status: 'pending')
+        other_order = Order.create!(user: other_user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 2.days.from_now, status: 'delivered')
+        another_order = Order.create!(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 3.days.from_now, status: 'canceled')
         #Act
         login_as(user)
         visit root_path
         click_on 'Meus Pedidos'
         #Assert
         expect(page).to have_content("#{order.code}")
+        expect(page).to have_content('Pendente')
         expect(page).to have_content("#{another_order.code}")
+        expect(page).to have_content('Cancelado')
         expect(page).not_to have_content("#{other_order.code}")
+        expect(page).not_to have_content('Entregue')
     end
 
     it 'e visita um pedido' do
