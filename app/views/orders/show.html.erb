@@ -13,7 +13,9 @@
   <dd><%= I18n.translate(@order.status) %> </dd>
 </dl>
 
-<%= button_to 'Marcar como ENTREGUE', delivered_order_path(@order.id) %>
-<%= button_to 'Marcar como CANCELADO', canceled_order_path(@order.id) %>
+<% if @order.pending? %>
+  <%= button_to 'Marcar como ENTREGUE', delivered_order_path(@order.id) %>
+  <%= button_to 'Marcar como CANCELADO', canceled_order_path(@order.id) %>
 
-<%= link_to 'Editar', edit_order_path(@order.id) %>
+  <%= link_to 'Editar', edit_order_path(@order.id) %>
+<% end %>

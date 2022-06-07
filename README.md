@@ -1,24 +1,4 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Projeto realizado no contexto do TreinaDev 8, acompanhando o ritmo das aulas. Algumas funcionalidades podem não estar completas devido à outras prioridades do próprio treinamento. Work in progress.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
