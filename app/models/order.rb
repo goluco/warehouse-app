@@ -13,7 +13,7 @@ class Order < ApplicationRecord
 
   enum status: { pending: 0, delivered: 5, canceled: 10 }
 
-  before_validation :generate_code
+  before_validation :generate_code, on: :create
 
   private
   def generate_code
