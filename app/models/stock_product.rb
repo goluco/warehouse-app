@@ -11,6 +11,7 @@ class StockProduct < ApplicationRecord
   end
 
   private
+  
   def generate_serial_number
     self.serial_number = SecureRandom.alphanumeric(20).upcase
   end
