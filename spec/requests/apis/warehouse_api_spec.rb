@@ -50,4 +50,36 @@ describe 'Warehouse API' do
       expect(json_response.length).to eq 0
     end
   end
+
+  context 'POST/api/v1/warehouses' do
+    it 'success' do
+      # Arrange
+      warehouse_params = { warehouse: { name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100_000, address: 'Avenida do Aeroporto, 1000', cep: '15000-000', description: 'Alguma descrição' } }
+      # Act
+      post '/api/v1/warehouses', params: warehouse_params
+      # Assert
+      expect(response).to have_http_status(:created)
+      expect(response.content_type).to include 'application/json'
+      json_response = JSON.parse(response.body)
+      expect(json_response['name']).to eq('Aeroporto SP')
+      expect(json_response['code']).to eq('GRU')
+      expect(json_response['city']).to eq('Guarulhos')
+      expect(json_response['area']).to eq(100_000)
+      expect(json_response['cep']).to eq('15000-000')
+      expect(json_response['description']).to eq('Alguma descrição')
+    end
+
+    it 'falha se os parâmetros não estão completos' do
+      # Arrange
+      warehouse_params = { warehouse: {name: 'Aeroporto Curitiba', code: 'CTB'} }
+      # Act
+      post '/api/v1/warehouses', params: warehouse_params
+      # Assert
+      expect(response).to have_http_status(412)
+      expect(response.body).to include 'Cidade não pode ficar em branco'
+      expect(response.body).to include 'Área não pode ficar em branco'
+      expect(response.body).to include 'CEP não pode ficar em branco'
+      expect(response.body).to include 'Descrição não pode ficar em branco'
+    end
+  end
 end
