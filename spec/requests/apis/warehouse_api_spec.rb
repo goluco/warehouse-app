@@ -49,6 +49,15 @@ describe 'Warehouse API' do
       json_response = JSON.parse(response.body)
       expect(json_response.length).to eq 0
     end
+
+    it 'e levanta erro interno' do
+      # Arrange
+      allow(Warehouse).to receive(:all).and_raise(ActiveRecord::QueryCanceled)
+      # Act
+      get '/api/v1/warehouses'
+      # Assert
+      expect(response).to have_http_status(500)
+    end
   end
 
   context 'POST/api/v1/warehouses' do
@@ -80,6 +89,16 @@ describe 'Warehouse API' do
       expect(response.body).to include 'Área não pode ficar em branco'
       expect(response.body).to include 'CEP não pode ficar em branco'
       expect(response.body).to include 'Descrição não pode ficar em branco'
+    end
+
+    it 'falha se há erro interno' do
+      # Arrange
+      allow(Warehouse).to receive(:new).and_raise(ActiveRecord::ActiveRecordError)
+      warehouse_params = { warehouse: { name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100_000, address: 'Avenida do Aeroporto, 1000', cep: '15000-000', description: 'Alguma descrição' } }
+      # Act
+      post '/api/v1/warehouses', params: warehouse_params
+      # Assert
+      expect(response).to have_http_status(500)
     end
   end
 end
